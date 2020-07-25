@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Login</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='login.css') }}">
+</head>
+<body>
+
+{%with messages = get_flashed_messages()%}
+    {%if messages%}
+        {%for msg in messages%}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                {{msg}} 
+            </div>
+        {%endfor%}
+    {%endif%}
+{%endwith%}
+
+<div class="login-form">
+    <form action="" method="POST">
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" required="required" name="username">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required" name="password">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>     
+    </form>
+    <p class="text-center"><a href="signup">Don't have an account? Create Account.</a></p>
+</div>
+</body>
+</html>

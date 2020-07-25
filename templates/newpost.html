@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>New Post</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='newpost.css') }}">
+<style>
+
+
+</style>
+</head>
+<body>
+  {%with messages = get_flashed_messages()%}
+      {%if messages%}
+          {%for msg in messages%}
+              <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                  {{msg}}
+              </div>
+          {%endfor%}
+      {%endif%}
+  {%endwith%}
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container" >
+            <a class="navbar-brand" href="/">Charcoal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                {%if g.user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/newpost"><span style="color:#68F0AA">New Post</span></a>
+                    </li>
+                {%endif%}
+                {%if not g.user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><span style="color:#89cff0">Login</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup"><span style="color:#68F0AA">Signup</span></a>
+                    </li>
+                {%endif%}
+                {%if g.user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><span style="color:red">Logout of {{g.user.username}}</span></a>
+                    </li>
+                {%endif%}
+
+                
+            </ul>
+            </div>
+        </div>
+     </nav>
+
+  <form autocomplete = 'off' action="" method="POST">
+    
+    <div class="container">
+      <label for="postername"><b>Posting as</b></label>
+      <input class='postername'type="text" name="postername" value='{{g.user.firstname}} {{g.user.lastname}}' readonly>
+
+      <label for="posterusername"><b>Poster Username</b></label>
+      <input class='posterusername'type="text" name="posterusername" value='{{g.user.username}}' readonly>
+       
+
+      <label for="title"><b>Title</b></label>
+      <input class='title'type="text" placeholder="Title" name="title"required>
+
+      <label for="content"><b>Content</b></label>
+      <textarea name="content" class="content" cols="30" rows="10" placeholder="Content" required></textarea>
+
+      <button class="submitbtn"type="submit" >Post</button>
+    </div>
+  </form>
+  <div class="container">
+    <button type="button" class="cancelbtn" onclick="window.location.href='/';">Cancel</button>
+  </div>
+
+</div>
+</body>
+</html>

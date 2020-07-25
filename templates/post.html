@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>{{info.title}}</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='post.css') }}">
+<style>
+
+
+</style>
+</head>
+<body>
+    <script>
+        function delPost() {
+            if (confirm("Are you sure you want to delete this post?") == true) {
+                  window.location.href='/deletepost/{{info.id}}';
+              }
+            else {
+            }
+        }
+
+    </script>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container" >
+            <a class="navbar-brand" href="/">Charcoal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                {%if g.user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/newpost"><span style="color:#68F0AA">New Post</span></a>
+                    </li>
+                {%endif%}
+                {%if not g.user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><span style="color:#89cff0">Login</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup"><span style="color:#68F0AA">Create Account</span></a>
+                    </li>
+                {%endif%}
+                {%if g.user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><span style="color:red">Logout of {{g.user.username}}</span></a>
+                    </li>
+                {%endif%}
+
+                
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            {%for msg in messages%}
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{msg}}
+                </div>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+
+    <div id='form'>
+    
+        <div class="container">
+          <label for="postername"><b>Posted by</b></label>
+          <input class='postername'type="text" name="postername" value='{{info.postername}}' readonly>
+           
+    
+          <label for="title"><b>Title</b></label>
+          <input class='title'type="text" placeholder="Title" name="title" value='{{info.title}}' readonly>
+    
+          <label for="content"><b>Content</b></label>
+          <textarea name="content" class="content" cols="30" rows="15" placeholder="Content" readonly>{{info.content}}</textarea>
+
+          <button class="homebtn" onclick="window.location.href='/';">Home</button>
+
+
+          {%if g.user.username == info.posterusername%}
+          <button class="editbtn" onclick="window.location.href='/editpost/{{info.id}}';">Edit</button>
+          <button id='deletebtn' class="deletebtn" onclick=delPost() >Delete</button>
+          {%endif%}
+
+          <button class="commentbtn" onclick="window.location.href='/comment/{{info.id}}';">Comment</button>
+    
+        
+        </div>
+
+        <br />
+        <br />
+        
+
+        <div class='container'>
+            <h1>Comments ({{comments|length}})</h1>
+            {%if comments|length == 0%}
+                <p style="font-size: 25px;">There are no comments on this post yet. Maybe you can be the first?</p>
+            {%endif%}
+            {%for comment in comments%}
+                <script>
+                    function delComment() {
+                        if (confirm("Are you sure you want to delete this comment?") == true) {
+                            window.location.href='/deletecomment/{{info.id}}/{{comment.id}}';
+                        }
+                        else {
+                        }
+                    }
+                </script>
+                <br />
+                <p style="font-size: 20px;"><strong>{{comment.postername}}</strong> ({{comment.datecreated}})</p>
+                <p style="font-size: 20px;">{{comment.content}}</p>
+                {%if g.user.username == comment.posterusername%}
+                    <button class='commenteditbtn'onclick="window.location.href='/editcomment/{{info.id}}/{{comment.id}}';">Edit</button>
+                    <button class='commentdelbtn' onclick=delComment()>Delete</button>
+                    <br />
+                {%elif g.user.username == info.posterusername%}
+                    <button class='commentdelbtn' onclick=delComment()>Delete</button>
+                    <br />
+                {%endif%}
+            {%endfor%}
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+
+
+      
+      
+
+
+
+
+
+
+
+</div>
+</body>
+
+</html>
