@@ -1,10 +1,10 @@
 # Charcoal
 
-webapp to create and share posts (basically a reddit clone)
+Webapp to create and share posts (basically a reddit clone)
 
 ![](images/frontpage.png)
 
-# features
+# Features
  - make new posts
  - edit posts
  - delete posts
@@ -13,14 +13,14 @@ webapp to create and share posts (basically a reddit clone)
  - delete comments
 
 
-# gallery
+# Gallery
 |![](images/comment.png) | 
 |:--:| 
-| *Adding new comment* |
+| *Posting new comment* |
 
 |![](images/newpost.png) | 
 |:--:| 
-| *creating new post* |
+| *Creating new post* |
 
 |![](images/oppov.png) | 
 |:--:| 
