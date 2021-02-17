@@ -14,13 +14,13 @@ Webapp to create and share posts (basically a less advanced [reddit](https://www
 
 
 # Gallery
-|![](images/comment.png) | 
-|:--:| 
-| *Posting new comment* |
-
 |![](images/newpost.png) | 
 |:--:| 
 | *Creating new post* |
+
+|![](images/comment.png) | 
+|:--:| 
+| *Posting new comment* |
 
 |![](images/oppov.png) | 
 |:--:| 
