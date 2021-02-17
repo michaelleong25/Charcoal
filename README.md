@@ -6,12 +6,18 @@ webapp to create and share posts (basically a reddit clone)
 
 # features
  - make new posts
-  ![](images/newpost.png)
  - edit posts
  - delete posts
  - comment on posts
- ![](images/comment.png)
  - edit comments
  - delete comments
- 
- 
+
+
+# gallery
+|![](images/comment.png) | 
+|:--:| 
+| *Adding new comment* |
+
+|![](images/newpost.png) | 
+|:--:| 
+| *creating new post* |
