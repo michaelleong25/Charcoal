@@ -5,12 +5,12 @@ Webapp to create and share posts (basically a less advanced [reddit](https://www
 ![](images/frontpage.png)
 
 # Features
- - make new posts
- - edit posts
- - delete posts
- - comment on posts
- - edit comments
- - delete comments
+ - Make new posts
+ - Edit posts
+ - Delete posts
+ - Comment on posts
+ - Edit comments
+ - Delete comments
 
 
 # Gallery
