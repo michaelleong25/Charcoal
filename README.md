@@ -1,6 +1,6 @@
 # Charcoal
 
-Webapp to create and share posts (basically a reddit clone)
+Webapp to create and share posts (basically a less advanced [reddit](https://www.reddit.com/). )
 
 ![](images/frontpage.png)
 
